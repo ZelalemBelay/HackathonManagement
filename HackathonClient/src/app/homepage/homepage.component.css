@@ -2,4 +2,12 @@
     h2 {
         color: dodgerblue;
       }
+
+    #avatar {
+        color: darkblue
+    }
+
+    input:focus ~ label.ee .change-color {
+        color: #00dd22;
+      }
    

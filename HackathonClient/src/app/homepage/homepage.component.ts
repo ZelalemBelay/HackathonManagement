@@ -1,67 +1,77 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
-//export class HomepageComponent implements OnInit {
 
   export class HomepageComponent{
+    form: FormGroup;
 
-  // constructor() { }
 
-  // ngOnInit() {
-  // }
   teamname:string = '';
   title:string = '';
   number:string = '';
   description:string = '';
+  email:string = '';
+  upload:string = '';
 
   clearText(){
     this.teamname = null;
     this.title = null;
     this.number = null;
     this.description = null;
+    this.email = null;
     this.labelteamname = null;
     this.labeltitle = null;
     this.labelnumber = null;
     this.labeldescription = null;
+    this.labelcontactemail = null;
+    this.upload = null;
   }
 
   labelteamname:string = '';
   labeltitle:string = '';
   labelnumber:string = '';
   labeldescription:string = '';
-  // placeholderteamname:string  = "Team Name";
-
-  // removeTeamValue() {
-  //   if (this.placeholderteamname) {
-  //     this.placeholderteamname = null
-  //     this.labelteamname = "Team Name";
-  //     return;
-  //   } else {
-  //     this.placeholderteamname = "Team Name";
-  //     // this.labelteamname = null;
-  //     return
-  //   }
-  //   // this.teamname = '';
-  // }
+  labelcontactemail: string = '';
+ 
 
   removeTeamValue() {
     this.labelteamname = "Team Name";
-  }
-
-  removeTitleValue() {
-    this.labeltitle = "Title of the Project";
   }
 
   removeNumberValue() {
     this.labelnumber = "Number of Team Members";
   }
 
+  removeNumberEmail(){
+    this.labelcontactemail = "Email Address;"
+  }
+
+  removeTitleValue() {
+    this.labeltitle = "Title of the Project";
+  }
+
   removeDescriptionValue() {
     this.labeldescription = "Description";
+  }
+
+  onFileChange(event) {
+    let reader = new FileReader();
+    if(event.target.files && event.target.files.length > 0) {
+      let file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        // this.form.get('avatar').setValue({
+        //   filename: file.name,
+        //   filetype: file.type,
+        //   value: reader.result.split(',')[1]
+        // })
+      };
+    }
   }
 
 }

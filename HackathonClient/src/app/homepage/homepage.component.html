@@ -1,21 +1,27 @@
 <div class="container">
   <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-12"><br>
 
-        <h2>Sign up </h2><br><br>
+        <h2>Sign up </h2><br>
 
 
-        <label for="uname" [(ngModel)]="labelteamname" name="labelteamname" ngDefaultControl>{{ labelteamname }}</label>
+        <label [(ngModel)]="labelteamname" name="labelteamname" ngDefaultControl>{{ labelteamname }}</label>
         <!-- <input type="text" class="form-control" [(ngModel)]="placeholderteamname" placeholder= "{{ placeholderteamname }}" [(ngModel)]="teamname" name="teamname" ngDefaultControl (blur)="removeTeamValue()" (focus)="removeTeamValue()"><br> -->
         <input type="text" class="form-control" placeholder= "Team Name" [(ngModel)]="teamname" name="teamname" ngDefaultControl (input)="removeTeamValue()"><br>
         <!-- <p>{{ teamname }}</p> -->
-        <label for="uname" [(ngModel)]="labeltitle" name="labeltitle" ngDefaultControl>{{ labeltitle }}</label>
-        <input type="text" class="form-control" placeholder="Title of the Project" [(ngModel)]="title" name="title" ngDefaultControl (input)="removeTitleValue()"><br>
-        <label for="uname" [(ngModel)]="labelnumber" name="labelnumber" ngDefaultControl>{{ labelnumber }}</label>
+        <label [(ngModel)]="labelnumber" name="labelnumber" ngDefaultControl>{{ labelnumber }}</label>
         <input type="text" class="form-control" placeholder="Number of Team Members" [(ngModel)]="number" name="number" ngDefaultControl (input)="removeNumberValue()"><br>
-        <label for="uname" [(ngModel)]="labeldescription" name="labeldescription" ngDefaultControl>{{ labeldescription }}</label><br>
+        <label [(ngModel)]="labelcontactemail" name="labelcontactemail" ngDefaultControl>{{ labelcontactemail }}</label>
+        <input type="text" class="form-control" placeholder="Email Address" [(ngModel)]="email" name="email" ngDefaultControl (input)="removeNumberEmail()"><br>     
+        <label [(ngModel)]="labeltitle" name="labelemail" ngDefaultControl>{{ labeltitle }}</label>
+        <input type="text" class="form-control" placeholder="Title of the Project" [(ngModel)]="title" name="title" ngDefaultControl (input)="removeTitleValue()"><br>   
+        <label [(ngModel)]="labeldescription" name="labeldescription" ngDefaultControl>{{ labeldescription }}</label><br>
         <!-- <textarea type="text" placeholder="Description" [(ngModel)]="description" name="description" ngDefaultControl (focus)="removeDescriptionValue()"></textarea> -->
         <textarea rows="4" cols="50" placeholder="Description" [(ngModel)]="description" name="description" ngDefaultControl (input)="removeDescriptionValue()"></textarea><br><br>
+        <label [(ngModel)]="labelattachement" name="labelattachement" ngDefaultControl>Attach Additional Documents</label><br>
+        <input type="file" name="upload" id="avatar" (change)="onFileChange($event)" #fileInput><br><br>
+
+        
 
         <button class="btn btn-primary" (click)="clearText()">Submit</button>
 
