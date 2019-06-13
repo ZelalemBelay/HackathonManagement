@@ -4,7 +4,7 @@
       }
 
     #avatar {
-        color: darkblue
+        color: darkgrey
     }
 
     input:focus ~ label.ee .change-color {
