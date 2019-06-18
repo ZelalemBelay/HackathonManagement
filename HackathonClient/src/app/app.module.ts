@@ -9,21 +9,31 @@ import { TeamSignUpComponent } from './team-sign-up/team-sign-up.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CustomEditTextComponent } from './custom-edit-text/custom-edit-text.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { AdminLandingComponent } from './admin/admin-landing.component';
+import { NavBarComponent } from './common/nav-bar/nav-bar.component';
+import { AdminModule } from './admin/admin.module';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({  
-
   declarations: [
     AppComponent,
     TeamSignUpComponent,
     HomepageComponent,
     CustomEditTextComponent,
+    LoginComponent,
+    AdminLandingComponent,
+    NavBarComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    Angular2FontawesomeModule
+    Angular2FontawesomeModule,
+
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
