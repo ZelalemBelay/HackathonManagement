@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/hackdb");
-var hparticipantSchema = new mongoose.Schema({
+var hUserSchema = new mongoose.Schema({
     teamName: String,
     teamEmail: String,
     teamMembers: [{
@@ -24,17 +24,18 @@ var hparticipantSchema = new mongoose.Schema({
     credential: {
         userName: String,
         password: String
-    }
+    },
+    role: String
 });
 
-var Hparticipant = mongoose.model("Hparticipant", hparticipantSchema);
+var hUser = mongoose.model("hUser", hUserSchema);
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
-app.post("/hparticipant/insert", (req, res) => {
-    var myData = new Hparticipant(req.body);
+app.post("/hUser/register", (req, res) => {
+    var myData = new hUser(req.body);
     var message = {
         status: "success",
         detail: null
@@ -53,15 +54,15 @@ app.post("/hparticipant/insert", (req, res) => {
         });
 });
 
-app.get("/", (req, res) => {
+// app.get("/", (req, res) => {
 
-});
+// });
 
-var Credential = mongoose.model("Hparticipant", hparticipantSchema.credential);
+//var Credential = mongoose.model("Hparticipant", hparticipantSchema.credential);
 
 app.post("/login", (req, res) => {
-    var credential = new Hparticipant(req.body);
-    Hparticipant.findOne({ 'credential.userName': req.body.userName, 'credential.password': req.body.password }, (err, data) => {
+    //var credential = new Hparticipant(req.body);
+    hUser.findOne({ 'credential.userName': req.body.userName, 'credential.password': req.body.password }, (err, data) => {
 
         console.log(data);
 
@@ -75,6 +76,9 @@ app.post("/login", (req, res) => {
 
     })
 });
+
+
+
 
 
 app.listen(port, () => {
