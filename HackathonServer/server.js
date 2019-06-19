@@ -113,7 +113,7 @@ app.post("/hEvent/insert", (req, res) => {
         });
 });
 
-app.post("/hEvent/", (req, res) => {
+app.post("/hEvent", (req, res) => {
     //var credential = new Hparticipant(req.body);
  
     hEvent.find({}, (err, data) => {
