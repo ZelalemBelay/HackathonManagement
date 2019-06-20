@@ -1,9 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { HParticipant } from '../model/HParticipant';
 import { HTeamMember } from '../model/HTeamMember';
 import { RegistrationService } from '../service/RegistrationService';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';  
+import { HUser } from '../model/HUser';
 const URL = 'http://localhost:3001/hUser/register';  
 
 @Component({
@@ -12,8 +11,7 @@ const URL = 'http://localhost:3001/hUser/register';
   styleUrls: ['./team-sign-up.component.css']
 })
 export class TeamSignUpComponent {
-  hParticipant: HParticipant = new HParticipant();
-  //filesToUpload: Array<File>;
+  hParticipant: HUser = new HUser();
   selectedFile: File = null;
 
   constructor(private registrationService: RegistrationService, private http: HttpClient) {
@@ -23,7 +21,9 @@ export class TeamSignUpComponent {
 
   submitForm(data) {
     console.log(this.hParticipant);
-    this.registrationService.reisterHParticipant(this.hParticipant)
+    this.registrationService.reisterHUser(this.hParticipant)
+      .subscribe(res => console.log(res));
+    this.registrationService.reisterHUser(this.hParticipant)
       .subscribe(res => console.log(res)); 
           
   }
