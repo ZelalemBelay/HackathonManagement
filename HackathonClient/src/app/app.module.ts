@@ -9,6 +9,7 @@ import { TeamSignUpComponent } from './team-sign-up/team-sign-up.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CustomEditTextComponent } from './custom-edit-text/custom-edit-text.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EvaluationFormComponent } from './evaluation-form/evaluation-form.component';
 
 @NgModule({  
 
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     TeamSignUpComponent,
     HomepageComponent,
     CustomEditTextComponent,
+    EvaluationFormComponent,
   ],
   imports: [
     BrowserModule,
