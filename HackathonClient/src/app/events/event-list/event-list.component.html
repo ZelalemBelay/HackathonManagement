@@ -1,0 +1,25 @@
+<div>
+  <h6 *ngIf="listOfEvents.length == 0">You have no Events created for this Hackathon. </h6>
+  <div *ngFor="let event of listOfEvents; let i=index" style="background: darkgrey; margin-top: 10px">
+    <div class="d-flex">
+      <div class="p-2 mr-auto" style="width: 100x">
+        <img style="height: 100px"
+          src="https://storage.googleapis.com/kaggle-organizations/1623/thumbnail.png?r=141" />
+      </div>
+
+      <div class="flex-grow-1"  (click)="handleClick(i)">
+        <div>
+          <h3>{{event.title}}</h3>
+          <h6>{{event.prize}}</h6>
+        </div>
+
+        <div [ngbCollapse]="!isCollapsed[i]">
+          <div class="d-flex flex-row-reverse bg-secondary">
+            <button class="btn btn-danger">ARCHIVE</button>
+            <button class="btn btn-susccess">EDIT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>

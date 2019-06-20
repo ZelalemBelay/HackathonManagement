@@ -3,20 +3,20 @@ import { Constants } from '../common/Constants';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Credential } from '../model/Credential';
-import { HUser } from '../model/HUser';
+import { HEvent } from '../model/HEvent';
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class RegistrationService {
-  
-    authentiacateUser(credential: Credential) {
-    return this.httpClient.post(Constants.AUTH_API, credential);
-  }
+export class EventService {
     constructor(private httpClient: HttpClient) { }
 
-    public reisterHUser(hUser: HUser) {
-        return this.httpClient.post(Constants.REGISTRATION_API, hUser);
+    fetchAllEvents() {
+        return this.httpClient.get<HEvent[]>(Constants.HEVENT_FETCH_API);
+      }
+
+    createEvent(hEvent: HEvent) {
+        return this.httpClient.post(Constants.HEVENT_INSERT_API, hEvent);
     }
 }

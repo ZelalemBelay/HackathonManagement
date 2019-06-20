@@ -4,12 +4,16 @@ import { TeamSignUpComponent } from './team-sign-up/team-sign-up.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { HackathonHostsComponent } from './admin/hackathon-hosts/hackathon-hosts.component';
 
-const routes: Routes = [  
-{ path: 'signUp', component: TeamSignUpComponent },
-{ path: 'login', component: LoginComponent },
-{ path: 'dashboard', component: LandingPageComponent },
-{ path: '**', component: HomepageComponent }
+const routes: Routes = [
+  { path: 'signUp', component: TeamSignUpComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: LandingPageComponent },
+  { path: 'homePage', component: HomepageComponent },
+  { path: 'hHostList', component: HackathonHostsComponent },
+  
+  { path: '**', component: HomepageComponent }
 ];
 
 @NgModule({

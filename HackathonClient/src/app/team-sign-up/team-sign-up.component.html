@@ -42,11 +42,11 @@
     <div>
       <h2 style="background-color: black; color: white; padding: 5px">Team Sign up </h2><br><br>
       <form #regForm="ngForm" (ngSubmit)="submitForm(regForm.value)">
-        <custom-edit-text [(ngModel)]="hParticipant.username" name="username" inputLabel="Username"></custom-edit-text>
-        <custom-edit-text [(ngModel)]="hParticipant.password" inputType="password" name="password"
+        <custom-edit-text [(ngModel)]="hParticipant.credential.userName" name="userName" inputLabel="Username"></custom-edit-text>
+        <custom-edit-text [(ngModel)]="hParticipant.credential.password" inputType="password" name="password"
           inputLabel="Password">
         </custom-edit-text>
-        <custom-edit-text [(ngModel)]="hParticipant.password" inputType="password" name="password"
+        <custom-edit-text [(ngModel)]="hParticipant.credential.password" inputType="password" name="password"
           inputLabel="Confirm Password">
         </custom-edit-text>
 

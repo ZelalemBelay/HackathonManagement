@@ -14,26 +14,27 @@ import { AdminLandingComponent } from './admin/admin-landing.component';
 import { NavBarComponent } from './common/nav-bar/nav-bar.component';
 import { AdminModule } from './admin/admin.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { SharedModule } from './common/shared.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({  
   declarations: [
     AppComponent,
     TeamSignUpComponent,
     HomepageComponent,
-    CustomEditTextComponent,
     LoginComponent,
-    AdminLandingComponent,
     NavBarComponent,
-    LandingPageComponent,
+    LandingPageComponent
   ],
   imports: [
+    NgbModule,
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     HttpClientModule,
     Angular2FontawesomeModule,
 
-    AdminModule
+    AdminModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

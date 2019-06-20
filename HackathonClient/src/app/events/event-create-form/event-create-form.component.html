@@ -1,0 +1,28 @@
+<div>
+  <h2 style="background-color: black; color: white; padding: 5px">Hackathon Event Creation </h2><br><br>
+  <form #regForm="ngForm" (ngSubmit)="submitForm(regForm.value)">
+    <h4>Basic info</h4>
+    <custom-edit-text [(ngModel)]="hEvent.title" name="title" inputLabel="Event Title"></custom-edit-text>
+    <custom-edit-text [(ngModel)]="hEvent.prize" name="prize" inputLabel="Event Prize"></custom-edit-text>
+    <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+    </ngb-datepicker>
+
+    <ng-template #t let-date let-focused="focused">
+      <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+        [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+        (mouseleave)="hoveredDate = null">
+        {{ date.day }}
+      </span>
+    </ng-template>
+
+    <hr>
+    <h4>Configurations</h4>
+    <custom-edit-text [(ngModel)]="hEvent.eventConfig.teamMembersMax" name="teamMembersMax" inputLabel="Maximum Team members allowed"></custom-edit-text>
+    <custom-edit-text [(ngModel)]="hEvent.eventConfig.ideaSubmissionMax" name="ideaSubmissionMax" inputLabel="Maximum number of ideas allowed"></custom-edit-text>
+    <custom-edit-text [(ngModel)]="hEvent.eventConfig.evaluationProcedure" name="evaluationProcedure" inputLabel="Evaluation Procedure"></custom-edit-text>
+
+    <div class="text-center"><button class="btn btn-primary"
+        style="align-items: center; margin-bottom: 20px; height: 60; width: 60%" type="submit">Submit</button>
+    </div>
+  </form>
+</div>

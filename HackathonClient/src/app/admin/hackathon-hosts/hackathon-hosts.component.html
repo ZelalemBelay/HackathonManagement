@@ -10,13 +10,13 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">
           <i class="fa fa-home
-             "></i>
+               "></i>
           Events
           <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/hHostList" routerLinkActive="active" >
+        <a class="nav-link" href="#">
           <i class="fa fa-calendar">
             <span class="badge badge-info">11</span>
           </i>
@@ -41,13 +41,23 @@
 <div class="d-flex justify-content-center" style="margin-top: 100px; min-width: 100%;">
   <div class="col-md-6 card">
     <div style="padding-bottom: 20px">
-      <h2 style="background-color: black; color: white; padding: 5px">All Events</h2><br><br>
-      <app-event-list></app-event-list>
-      <br>
-      <hr>
-      <button type="button" style="margin-right: 15px; margin-bottom: 15px" class="d-flex justify-content-end btn {{buttonStyle}}"
-      (click)="createHackathonEvent()">{{ buttonLabel }}</button>
-      <app-event-create-form *ngIf="addingEvents"></app-event-create-form>
+      <h2 style="background-color: black; color: white; padding: 5px">All Hackathon Hosts</h2><br><br>
+      <button type="button" style="margin-right: 15px; margin-bottom: 15px"
+        class="d-flex justify-content-end btn {{buttonStyle}}"
+        (click)="createHackathonEvent()">{{ buttonLabel }}</button>
+      <div *ngIf="addingHost">
+        <h2 style="background-color: black; color: white; padding: 5px">Hackathon Host Creator</h2><br><br>
+        <form #regForm="ngForm" (ngSubmit)="submitForm(regForm.value)">
+          <custom-edit-text [(ngModel)]="hHost.firstName" name="userName" inputLabel="First Name"></custom-edit-text>
+          <custom-edit-text [(ngModel)]="hHost.lastName" name="lastName" inputLabel="Last Name"></custom-edit-text>
+          <custom-edit-text [(ngModel)]="hHost.userName" name="userName" inputLabel="Username / Email Address"></custom-edit-text>
+          <custom-edit-text [(ngModel)]="hHost.password" name="password" inputType="password" inputLabel="password"></custom-edit-text>
+          <hr>
+          <div class="text-center"><button class="btn btn-primary"
+              style="align-items: center; margin-bottom: 20px; height: 60; width: 60%" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

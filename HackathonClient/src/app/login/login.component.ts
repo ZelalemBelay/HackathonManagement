@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   credential: Credential = new Credential();
-  constructor(private registrationService: RegistrationService, 
+  loginError: boolean = false;
+
+  constructor(private registrationService: RegistrationService,
     private router: Router) { }
 
   ngOnInit() {
@@ -24,6 +26,8 @@ export class LoginComponent implements OnInit {
         console.log(res);
         if (res != null)
           this.router.navigate(['/dashboard']);
+        else
+          this.loginError = true;
       });
   }
 

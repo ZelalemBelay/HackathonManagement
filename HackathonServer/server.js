@@ -61,7 +61,7 @@ app.post("/hUser/register", (req, res) => {
 
 app.post("/login", (req, res) => {
     //var credential = new Hparticipant(req.body);
-    hUser.findOne({ 'credential.userName': req.body.userName, 'credential.password': req.body.password }, (err, data) => {
+    hUser.findOne({ 'credential.userName' : req.body.userName, 'credential.password': req.body.password }, (err, data) => {
 
         console.log(data);
 
@@ -113,9 +113,22 @@ app.post("/hEvent/insert", (req, res) => {
         });
 });
 
-app.post("/hEvent", (req, res) => {
-    //var credential = new Hparticipant(req.body);
- 
+app.get("/hUsers/all/:role", (req, res) => {
+    hUser.find({'role' : req.params.role}, (err, data) => {
+
+        var response = {
+            response: "NOT_FOUND"
+        }
+        if (data == null)
+            res.json(response);
+        else
+            res.json(data);
+
+    })
+});
+
+
+app.get("/hEvent/all", (req, res) => {
     hEvent.find({}, (err, data) => {
 
         console.log(data);
