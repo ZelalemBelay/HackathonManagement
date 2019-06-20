@@ -57,6 +57,18 @@
         <custom-edit-text [(ngModel)]="hParticipant.teamEmail" name="teamEmail" inputLabel="Team email Address">
         </custom-edit-text>
 
+        <h4>Idea Submission</h4>
+
+        <custom-edit-text [(ngModel)]="hParticipant.idea.description" name="idea.description" inputLabel="Description">
+        </custom-edit-text>
+        <input type="file" name="upload" id="avatar" (change)="onFileChange($event)" #fileInput class="upload()"><br><br>
+        <!-- <custom-edit-text [(ngModel)]="hParticipant.idea" name="idea.attachement" inputType="file" inputLabel="Attach Additional Documents"></custom-edit-text> -->
+        
+
+
+
+        
+
         <div class="d-flex flex-row">
           <h4 class="d-flex justify-content-start mr-auto">Team Members</h4> <button type="button" style="margin-right: 15px" class="d-flex justify-content-end btn btn-secondary"
             (click)="addTeamMemberView()">Add More</button>
