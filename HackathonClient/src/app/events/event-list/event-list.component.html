@@ -1,25 +1,54 @@
 <div>
   <h6 *ngIf="listOfEvents.length == 0">You have no Events created for this Hackathon. </h6>
-  <div *ngFor="let event of listOfEvents; let i=index" style="background: darkgrey; margin-top: 10px">
+  <div *ngFor="let event of listOfEvents; let i=index" style="background: lightgrey; margin-top: 10px">
     <div class="d-flex">
       <div class="p-2 mr-auto" style="width: 100x">
-        <img style="height: 100px"
-          src="https://storage.googleapis.com/kaggle-organizations/1623/thumbnail.png?r=141" />
+        <img style="height: 100px" src="https://storage.googleapis.com/kaggle-organizations/1623/thumbnail.png?r=141" />
       </div>
 
-      <div class="flex-grow-1"  (click)="handleClick(i)">
+      <div class="flex-grow-1" (click)="handleClick(i)">
         <div>
           <h3>{{event.title}}</h3>
           <h6>{{event.prize}}</h6>
         </div>
-
-        <div [ngbCollapse]="!isCollapsed[i]">
-          <div class="d-flex flex-row-reverse bg-secondary">
-            <button class="btn btn-danger">ARCHIVE</button>
-            <button class="btn btn-susccess">EDIT</button>
-          </div>
-        </div>
       </div>
     </div>
+    <hr>
+    <div [ngbCollapse]="!isCollapsed[i]">
+      <h6>List of Teams</h6>
+      <div *ngFor="let user of listOfUsers; let i=index" style="background: lightgrey; margin-top: 10px">
+        <div class="d-flex">
+          <!-- <h3>Team Name: {{user.teamName}}</h3> -->
+          <!-- <h4>Idea: {{user.idea.description}}</h4>
+                    <h6>Click here to see the evaluation form</h6> -->
+          <table>
+            <tbody>
+              <div class="d-flex">
+                <div class="p-2 mr-auto">
+                  <img style="height: 60px"
+                    src="https://www.businesstransitions.org/wp-content/uploads/2018/09/my-team-icon.png" />
+                </div>
+                <div class="flex-grow-1" style="margin-top: 5px" (click)="onIdeaClick(user)">
+                  <h6>Team name: {{user.teamName}}</h6>
+                  <h6>Description: {{user.idea.description}}</h6>
+                  <h6>Members: {{user.teamMembers.length}}</h6>
+                </div>
+                <router-outlet></router-outlet>
+           
+              </div>
+            </tbody>
+          </table>
+          
+        </div>
+        <hr>
+      </div>
+
+      <div class="d-flex ml-auto flex-row-reverse bg-secondary">
+        <button class="btn btn-danger">ARCHIVE</button>
+        <button class="btn btn-susccess">EDIT</button>
+      </div>
+
+    </div>
+
   </div>
   <div>

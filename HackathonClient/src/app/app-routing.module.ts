@@ -11,7 +11,7 @@ import { EvaluationFormComponent } from './evaluation-form/evaluation-form.compo
 const routes: Routes = [
   { path: 'signUp', component: TeamSignUpComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'evaluation', component: EvaluationFormComponent },
+  { path: 'evaluation/:username', component: EvaluationFormComponent },
   { path: 'dashboard', component: LandingPageComponent },
   { path: 'homePage', component: HomepageComponent },
   { path: 'hHostList', component: HackathonHostsComponent },

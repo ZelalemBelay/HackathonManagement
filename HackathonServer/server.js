@@ -35,7 +35,8 @@ var hUserSchema = new mongoose.Schema({
     idea: {
         description: String,
         attachement: String
-    }
+    },
+    status: String
 });
 
 var hUser = mongoose.model("hUser", hUserSchema);

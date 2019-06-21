@@ -42,6 +42,7 @@
   <div class="col-md-6 card">
     <div>
       <h2 style="background-color: black; color: white; padding: 5px">Evaluation Form </h2><br><br>
+      
       <form #regForm="ngForm" (ngSubmit)="submitForm(regForm.value)">
         <custom-edit-text [(ngModel)]="evaluationForm.codingSkills" name="codingSkills" inputLabel="Coding Skills"></custom-edit-text>
         <custom-edit-text [(ngModel)]="evaluationForm.UIDesign" name="UIDesign"
@@ -49,11 +50,20 @@
         </custom-edit-text>
         <custom-edit-text [(ngModel)]="evaluationForm.Functionality" name="Functionality" inputLabel="Functionality">
         </custom-edit-text>           
-
+        <!-- <div class="d-flex flex-row-reverse bg-secondary"> -->
+          <div>
+                  <button class="btn btn-susccess" (click)="acceptStatus()">ACCEPT</button>
+                  <button class="btn btn-danger" (click)="rejectStatus()">REJECT</button>
+              
+          </div><br>
+        <!-- </div> -->
         
        
-        <div class="text-center"><button class="btn btn-primary" style="align-items: center; margin-bottom: 20px; height: 60; width: 60%"
+        <div class="text-center">
+            <button class="btn btn-primary" style="align-items: laft; margin-bottom: 20px; height: 60; width: 40%"
+            type="submit" (click)="onBackClick()">Back</button>&nbsp;<button class="btn btn-primary" style="align-items: right; margin-bottom: 20px; height: 60; width: 40%"
             type="submit">Submit</button>
+            
         </div>
       </form>
     </div>
