@@ -6,6 +6,7 @@ import { SharedModule } from '../common/shared.module';
 import { HomepageComponent } from '../homepage/homepage.component';
 import { HackathonHostsComponent } from './hackathon-hosts/hackathon-hosts.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { EvaluationFormComponent } from '../evaluation-form/evaluation-form.component';
 
 @NgModule({
     imports: [
@@ -14,6 +15,13 @@ import { AppRoutingModule } from '../app-routing.module';
         AppRoutingModule
     ],
     declarations: [
-        HackathonHostsComponent]
+        HackathonHostsComponent,
+        //EvaluationFormComponent,
+    ]
+
+    // ],
+    // exports: [
+    //     EvaluationFormComponent
+    // ]
 })
 export class AdminModule { }

@@ -1,0 +1,71 @@
+<nav class="navbar fixed-top navbar-icon-top navbar-expand-lg navbar-dark bg-dark" style="height: 70px">
+  <a class="navbar-brand" href="#">Hackathon Management</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <i class="fa fa-home"></i>
+          Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-calendar">
+            <span class="badge badge-info">11</span>
+          </i>
+          Events
+        </a>
+      </li>
+
+
+    </ul>
+    <ul class="navbar-nav ">
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active">
+          <i class="fa fa-share-square-o">
+          </i>
+          Log In
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="d-flex justify-content-center" style="margin-top: 100px; min-width: 100%;">
+  <div class="col-md-6 card">
+    <div>
+      <h2 style="background-color: black; color: white; padding: 5px">Evaluation Form </h2><br><br>
+      
+      <form #regForm="ngForm" (ngSubmit)="submitForm(regForm.value)">
+        <custom-edit-text [(ngModel)]="evaluationForm.codingSkills" name="codingSkills" inputLabel="Coding Skills"></custom-edit-text>
+        <custom-edit-text [(ngModel)]="evaluationForm.UIDesign" name="UIDesign"
+          inputLabel="UI Design">
+        </custom-edit-text>
+        <custom-edit-text [(ngModel)]="evaluationForm.Functionality" name="Functionality" inputLabel="Functionality">
+        </custom-edit-text>           
+        <!-- <div class="d-flex flex-row-reverse bg-secondary"> -->
+          <div>
+                  <button class="btn btn-susccess" (click)="acceptStatus()">ACCEPT</button>
+                  <button class="btn btn-danger" (click)="rejectStatus()">REJECT</button>
+              
+          </div><br>
+        <!-- </div> -->
+        
+       
+        <div class="text-center">
+            <button class="btn btn-primary" style="align-items: laft; margin-bottom: 20px; height: 60; width: 40%"
+            type="submit" (click)="onBackClick()">Back</button>&nbsp;<button class="btn btn-primary" style="align-items: right; margin-bottom: 20px; height: 60; width: 40%"
+            type="submit">Submit</button>
+            
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,12 @@
 //import { Schema } from './schema';
 
 var express = require("express");
+//file upload
+var router = express.Router();
+var multer = require('multer');
+var DIR = './uploads/';
+var upload = multer({dest: DIR}).single('photo');
+
 var app = express();
 var port = 3001;
 var bodyParser = require('body-parser');
@@ -29,7 +35,8 @@ var hUserSchema = new mongoose.Schema({
     idea: {
         description: String,
         attachement: String
-    }
+    },
+    status: String
 });
 
 var hUser = mongoose.model("hUser", hUserSchema);
@@ -114,6 +121,7 @@ app.post("/hEvent/insert", (req, res) => {
         });
 });
 
+
 app.get("/hUsers/all/:role", (req, res) => {
     hUser.find({'role' : req.params.role}, (err, data) => {
 
@@ -130,6 +138,7 @@ app.get("/hUsers/all/:role", (req, res) => {
 
 
 app.get("/hEvent/all", (req, res) => {
+
     hEvent.find({}, (err, data) => {
 
         console.log(data);
@@ -143,6 +152,36 @@ app.get("/hEvent/all", (req, res) => {
             res.json(data);
 
     })
+});
+
+var evaluationSchema = new mongoose.Schema({
+    codingSkills: String,
+    UIDesign: String,
+    Functionality: String
+    
+});
+
+var evaluation = mongoose.model("evaluation", evaluationSchema);
+
+
+app.post("/evaluation/insert", (req, res) => {
+    var myData = new evaluation(req.body);
+    var message = {
+        status: "success",
+        detail: null
+    }
+    myData.save()
+        .then(item => {
+            // res.send("Name saved to database");
+            res.json(message);
+        })
+        .catch(err => {
+            message.status = "error";
+            message.detail = err;
+            res.json(message);
+
+            // res.status(400).send("Unable to save to database");
+        });
 });
 
 

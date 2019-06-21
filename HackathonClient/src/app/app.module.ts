@@ -7,8 +7,10 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 
 import { TeamSignUpComponent } from './team-sign-up/team-sign-up.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { CustomEditTextComponent } from './custom-edit-text/custom-edit-text.component';
+//import { CustomEditTextComponent } from './custom-edit-text/custom-edit-text.component';
 import { HttpClientModule } from '@angular/common/http';
+
+import { EvaluationFormComponent } from './evaluation-form/evaluation-form.component';
 import { LoginComponent } from './login/login.component';
 import { AdminLandingComponent } from './admin/admin-landing.component';
 import { NavBarComponent } from './common/nav-bar/nav-bar.component';
@@ -17,14 +19,19 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SharedModule } from './common/shared.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+
 @NgModule({  
   declarations: [
     AppComponent,
     TeamSignUpComponent,
-    HomepageComponent,
+    // HomepageComponent,
+
+    //CustomEditTextComponent,
+    //EvaluationFormComponent,
     LoginComponent,
     NavBarComponent,
     LandingPageComponent
+
   ],
   imports: [
     NgbModule,

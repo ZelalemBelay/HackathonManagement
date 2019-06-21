@@ -7,6 +7,8 @@ import { EventListComponent } from '../events/event-list/event-list.component';
 import { EventCreateFormComponent } from '../events/event-create-form/event-create-form.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from '../app-routing.module';
+import { EvaluationFormComponent } from '../evaluation-form/evaluation-form.component';
+import { HomepageComponent } from '../homepage/homepage.component';
 
 @NgModule({
   imports: [
@@ -19,11 +21,14 @@ import { AppRoutingModule } from '../app-routing.module';
     CustomEditTextComponent,
     AdminLandingComponent,
     EventListComponent,
-    EventCreateFormComponent
+    EventCreateFormComponent,
+    EvaluationFormComponent,
+    HomepageComponent
   ],
   exports: [
     CustomEditTextComponent,
     AdminLandingComponent,
+    HomepageComponent,
     CommonModule,
     FormsModule,
     AppRoutingModule
