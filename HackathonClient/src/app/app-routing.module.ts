@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TeamSignUpComponent } from './team-sign-up/team-sign-up.component';
 import { HomepageComponent } from './homepage/homepage.component';
-
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { HackathonHostsComponent } from './admin/hackathon-hosts/hackathon-hosts.component';
