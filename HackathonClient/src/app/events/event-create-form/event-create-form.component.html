@@ -17,9 +17,52 @@
 
     <hr>
     <h4>Configurations</h4>
-    <custom-edit-text [(ngModel)]="hEvent.eventConfig.teamMembersMax" name="teamMembersMax" inputLabel="Maximum Team members allowed"></custom-edit-text>
-    <custom-edit-text [(ngModel)]="hEvent.eventConfig.ideaSubmissionMax" name="ideaSubmissionMax" inputLabel="Maximum number of ideas allowed"></custom-edit-text>
-    <custom-edit-text [(ngModel)]="hEvent.eventConfig.evaluationProcedure" name="evaluationProcedure" inputLabel="Evaluation Procedure"></custom-edit-text>
+    <custom-edit-text [(ngModel)]="hEvent.eventConfig.teamMembersMax" name="teamMembersMax"
+      inputLabel="Maximum Team members allowed"></custom-edit-text>
+    <custom-edit-text [(ngModel)]="hEvent.eventConfig.ideaSubmissionMax" name="ideaSubmissionMax"
+      inputLabel="Maximum number of ideas allowed"></custom-edit-text>
+    <custom-edit-text [(ngModel)]="hEvent.eventConfig.evaluationProcedure" name="evaluationProcedure"
+      inputLabel="Evaluation Procedure"></custom-edit-text>
+
+    <h6>Assigned Host</h6>
+    <div *ngIf="assignedHost.credential && assignedHost.teamMembers[0]">
+      <div class="d-flex">
+        <div class="p-2 mr-auto">
+          <img style="height: 50px"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq1dY23KgG4yP2_LG2oTdUhHNP54MrjZ15kXx2dVK-WVFcz906" />
+        </div>
+        <div class="flex-grow-1" style="margin-top: 10px">
+          <h6>Email Address: {{assignedHost.credential.userName}}</h6>
+          <h6>Name: {{assignedHost.teamMembers[0].firstName}} {{assignedHost.teamMembers[0].lastName}}</h6>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-md-4'>
+      <div class="form-group has-search">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" placeholder="Filter By Email"
+          [(ngModel)]='listFilter'>
+      </div>
+    </div>
+    
+    <div class='table-responsive'>
+      <table class='table' *ngIf='listOfHosts && listOfHosts.length'>
+        <thead>
+          <tr>
+            <th>
+              Available Hackathon Hosts
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let host of filteredHosts'>
+            <td (click)="onHostClicked(host)">
+              {{host.credential.userName}}
+            </td>
+        </tbody>
+      </table>
+    </div>
 
     <div class="text-center"><button class="btn btn-primary"
         style="align-items: center; margin-bottom: 20px; height: 60; width: 60%" type="submit">Submit</button>

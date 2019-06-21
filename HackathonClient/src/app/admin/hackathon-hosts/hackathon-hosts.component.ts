@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HUser } from 'src/app/model/HUser';
 import { RegistrationService } from 'src/app/service/RegistrationService';
 import { UserManagementService } from 'src/app/service/UserManagementService';
+import { HTeamMember } from 'src/app/model/HTeamMember';
 
 @Component({
   selector: 'app-hackathon-hosts',
@@ -11,9 +12,11 @@ export class HackathonHostsComponent implements OnInit {
 
 
   constructor(private registrationService: RegistrationService,
-    private userManagementService: UserManagementService) { }
+    private userManagementService: UserManagementService) { this.hHost.teamMembers.push(new HTeamMember()) }
   hHost: HUser = new HUser();
+
   listOfHosts: HUser[] = [];
+  filteredHosts: HUser[] = [];
 
   addingHost: boolean = false;
   buttonLabel: string = "Add New Hackathon Host";
@@ -21,7 +24,10 @@ export class HackathonHostsComponent implements OnInit {
 
   ngOnInit() {
     this.userManagementService.fetchUsersByRole('HH').subscribe(
-      hh => this.listOfHosts = hh
+      hh => {
+        this.listOfHosts = hh;
+        this.filteredHosts = hh;
+      }
     )
   }
 
@@ -43,6 +49,21 @@ export class HackathonHostsComponent implements OnInit {
       this.buttonLabel = "Add New Hackathon Host";
       this.buttonStyle = "btn-secondary";
     }
+  }
+
+  _listFilter = '';
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredHosts = this.listFilter ? this.performFilter(this.listFilter) : this.listOfHosts;
+  }
+
+  performFilter(filterBy: string): HUser[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.listOfHosts.filter((user: HUser) =>
+      user.credential.userName.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
 }

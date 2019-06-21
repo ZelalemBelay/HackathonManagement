@@ -42,22 +42,50 @@
   <div class="col-md-6 card">
     <div style="padding-bottom: 20px">
       <h2 style="background-color: black; color: white; padding: 5px">All Hackathon Hosts</h2><br><br>
-      <button type="button" style="margin-right: 15px; margin-bottom: 15px"
-        class="d-flex justify-content-end btn {{buttonStyle}}"
-        (click)="createHackathonEvent()">{{ buttonLabel }}</button>
-      <div *ngIf="addingHost">
-        <h2 style="background-color: black; color: white; padding: 5px">Hackathon Host Creator</h2><br><br>
-        <form #regForm="ngForm" (ngSubmit)="submitForm(regForm.value)">
-          <custom-edit-text [(ngModel)]="hHost.firstName" name="userName" inputLabel="First Name"></custom-edit-text>
-          <custom-edit-text [(ngModel)]="hHost.lastName" name="lastName" inputLabel="Last Name"></custom-edit-text>
-          <custom-edit-text [(ngModel)]="hHost.userName" name="userName" inputLabel="Username / Email Address"></custom-edit-text>
-          <custom-edit-text [(ngModel)]="hHost.password" name="password" inputType="password" inputLabel="password"></custom-edit-text>
-          <hr>
-          <div class="text-center"><button class="btn btn-primary"
-              style="align-items: center; margin-bottom: 20px; height: 60; width: 60%" type="submit">Submit</button>
+      <div>
+          <div class='col-md-4'>
+              <div class="form-group has-search">
+                  <span class="fa fa-search form-control-feedback"></span>
+                  <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" placeholder="Filter By Email"
+                    [(ngModel)]='listFilter'>
+                </div>
           </div>
-        </form>
+
+        <h6 *ngIf="listOfHosts.length == 0">You have no Hosts for any Hackathon Events</h6>
+        <div *ngFor="let hhs of filteredHosts; let i=index" style="background: honeydew; margin-top: 10px">
+          <div class="d-flex">
+            <div class="p-2 mr-auto">
+              <img style="height: 50px" src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png" />
+            </div>
+            <div class="flex-grow-1" style="margin-top: 10px">
+              <h6>{{hhs.teamMembers[0].firstName}} {{hhs.teamMembers[0].lastName}}</h6>
+              <h6>{{hhs.credential.userName}}</h6>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <hr>
+        <div>
+          <button type="button" style="margin-right: 15px; margin-bottom: 15px"
+            class="d-flex justify-content-end btn {{buttonStyle}}"
+            (click)="createHackathonEvent()">{{ buttonLabel }}</button>
+          <div *ngIf="addingHost">
+            <h2 style="background-color: black; color: white; padding: 5px">Hackathon Host Creator</h2><br><br>
+            <form #regForm="ngForm" (ngSubmit)="submitForm(regForm.value)">
+              <custom-edit-text [(ngModel)]="hHost.teamMembers[0].firstName" name="userName" inputLabel="First Name">
+              </custom-edit-text>
+              <custom-edit-text [(ngModel)]="hHost.teamMembers[0].lastName" name="lastName" inputLabel="Last Name">
+              </custom-edit-text>
+              <custom-edit-text [(ngModel)]="hHost.credential.userName" name="userName"
+                inputLabel="Username / Email Address"></custom-edit-text>
+              <custom-edit-text [(ngModel)]="hHost.credential.password" name="password" inputType="password"
+                inputLabel="password"></custom-edit-text>
+              <hr>
+              <div class="text-center"><button class="btn btn-primary"
+                  style="align-items: center; margin-bottom: 20px; height: 60; width: 60%" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>

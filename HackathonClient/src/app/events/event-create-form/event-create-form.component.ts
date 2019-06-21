@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { HEvent } from 'src/app/model/HEvent';
 import { EventService } from 'src/app/service/EventService';
+import { HUser } from 'src/app/model/HUser';
+import { UserManagementService } from 'src/app/service/UserManagementService';
 
 @Component({
   selector: 'app-event-create-form',
@@ -26,7 +28,7 @@ import { EventService } from 'src/app/service/EventService';
   }
 `]
 })
-export class EventCreateFormComponent {
+export class EventCreateFormComponent implements OnInit {
 
   hoveredDate: NgbDate;
   hEvent: HEvent = new HEvent();
@@ -34,9 +36,24 @@ export class EventCreateFormComponent {
   fromDate: NgbDate;
   toDate: NgbDate;
 
-  constructor(calendar: NgbCalendar, private hEventService: EventService) {
+  assignedHost: HUser = new HUser;
+
+  listOfHosts: HUser[] = [];
+  filteredHosts: HUser[] = [];
+
+
+  constructor(calendar: NgbCalendar, private hEventService: EventService,
+    private userManagementService: UserManagementService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+  }
+
+  ngOnInit(): void {
+    this.userManagementService.fetchUsersByRole('HH').subscribe(
+      hh => this.listOfHosts = hh
+    )
+    console.log(this.listOfHosts)
+    this.filteredHosts = this.listOfHosts;
   }
 
   submitForm(data) {
@@ -69,5 +86,25 @@ export class EventCreateFormComponent {
 
   isRange(date: NgbDate) {
     return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
+  }
+
+  _listFilter = '';
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredHosts = this.listFilter ? this.performFilter(this.listFilter) : this.listOfHosts;
+  }
+
+  performFilter(filterBy: string): HUser[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.listOfHosts.filter((user: HUser) =>
+      user.credential.userName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
+  onHostClicked(hUser: HUser) {
+    this.assignedHost = hUser;
+    this.hEvent.assignedHost = hUser.credential.userName;
   }
 }

@@ -18,6 +18,7 @@ export class AdminLandingComponent {
 
   submitForm(data) {
     console.log(this.hUser);
+    
     this.hUser.role = "HH";
     this.registrationService.reisterHUser(this.hUser)
       .subscribe(res => console.log(res));

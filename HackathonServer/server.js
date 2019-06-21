@@ -62,15 +62,14 @@ app.post("/hUser/register", (req, res) => {
 app.post("/login", (req, res) => {
     //var credential = new Hparticipant(req.body);
     hUser.findOne({ 'credential.userName' : req.body.userName, 'credential.password': req.body.password }, (err, data) => {
+        // console.log(data);
 
-        console.log(data);
-
-        var response = {
-            response: "NOT_FOUND"
-        }
-        if (data == null)
-            res.json(response);
-        else
+        // var response = {
+        //     response: "NOT_FOUND"
+        // }
+        // if (data == null)
+        //     res.json(response);
+        // else
             res.json(data);
 
     })
@@ -83,6 +82,8 @@ var hEventSchema = new mongoose.Schema({
     fromDate: String,
     toDate: String,
     prize: String,
+    assignedHost: String,
+    assignedEvaluator: String,
     eventConfig: {
         teamMemberMax: String,
         ideaSubmissionMax: String,
