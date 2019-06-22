@@ -19,4 +19,14 @@ export class EventService {
     createEvent(hEvent: HEvent) {
         return this.httpClient.post(Constants.HEVENT_INSERT_API, hEvent);
     }
+
+    updateEventStatus(hEvent: HEvent, status: string){
+
+        const reqData = {
+            eventId : hEvent.eventId,
+            status : hEvent.status
+        }
+
+        return this.httpClient.post(Constants.HEVENT_UPDATE_STATUS_API, reqData);
+    }
 }

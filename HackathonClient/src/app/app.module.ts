@@ -3,7 +3,6 @@ import { NgModule, forwardRef } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
 import { TeamSignUpComponent } from './team-sign-up/team-sign-up.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -18,6 +17,7 @@ import { AdminModule } from './admin/admin.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SharedModule } from './common/shared.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
 
 @NgModule({  
@@ -38,8 +38,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    Angular2FontawesomeModule,
-
+    JwSocialButtonsModule,
     AdminModule,
     SharedModule
   ],

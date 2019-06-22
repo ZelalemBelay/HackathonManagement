@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
 export class RegistrationService {
   
     authentiacateUser(credential: Credential) {
-    return this.httpClient.post(Constants.AUTH_API, credential);
+    return this.httpClient.post<HUser>(Constants.AUTH_API, credential);
   }
     constructor(private httpClient: HttpClient) { }
 

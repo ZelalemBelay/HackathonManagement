@@ -9,13 +9,15 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from '../app-routing.module';
 import { EvaluationFormComponent } from '../evaluation-form/evaluation-form.component';
 import { HomepageComponent } from '../homepage/homepage.component';
+import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
 @NgModule({
   imports: [
     AppRoutingModule,
     FormsModule,
     CommonModule,
-    NgbModule
+    NgbModule,
+    JwSocialButtonsModule
   ],
   declarations: [
     CustomEditTextComponent,

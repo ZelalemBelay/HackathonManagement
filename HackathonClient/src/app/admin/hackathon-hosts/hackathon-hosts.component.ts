@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HUser } from 'src/app/model/HUser';
 import { RegistrationService } from 'src/app/service/RegistrationService';
 import { UserManagementService } from 'src/app/service/UserManagementService';
@@ -9,7 +9,6 @@ import { HTeamMember } from 'src/app/model/HTeamMember';
   templateUrl: './hackathon-hosts.component.html',
 })
 export class HackathonHostsComponent implements OnInit {
-
 
   constructor(private registrationService: RegistrationService,
     private userManagementService: UserManagementService) { this.hHost.teamMembers.push(new HTeamMember()) }

@@ -17,9 +17,6 @@ const URL = 'http://localhost:3001/hUser/register';
 })
 export class EvaluationFormComponent {
 
-
-  
-
   evaluationForm: EvaluationForm = new EvaluationForm();
     //filesToUpload: Array<File>;
     selectedFile: File = null;

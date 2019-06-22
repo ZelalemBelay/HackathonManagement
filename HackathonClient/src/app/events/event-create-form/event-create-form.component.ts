@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { HEvent } from 'src/app/model/HEvent';
 import { EventService } from 'src/app/service/EventService';
@@ -41,6 +41,8 @@ export class EventCreateFormComponent implements OnInit {
   listOfHosts: HUser[] = [];
   filteredHosts: HUser[] = [];
 
+  @Input()
+  currentLoggedInUser: HUser = new HUser();
 
   constructor(calendar: NgbCalendar, private hEventService: EventService,
     private userManagementService: UserManagementService) {
@@ -58,6 +60,7 @@ export class EventCreateFormComponent implements OnInit {
 
   submitForm(data) {
     console.log(this.hEvent);
+    this.hEvent.eventId = Math.random().toString(36).substring(2, 9);
     this.hEventService.createEvent(this.hEvent)
       .subscribe(res => console.log(res));
   }

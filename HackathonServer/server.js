@@ -7,7 +7,7 @@ var express = require("express");
 var router = express.Router();
 var multer = require('multer');
 var DIR = './uploads/';
-var upload = multer({dest: DIR}).single('photo');
+var upload = multer({ dest: DIR }).single('photo');
 
 var app = express();
 var port = 3001;
@@ -36,7 +36,8 @@ var hUserSchema = new mongoose.Schema({
         description: String,
         attachement: String
     },
-    status: String
+    status: String,
+    registeredEvent: String
 });
 
 var hUser = mongoose.model("hUser", hUserSchema);
@@ -67,30 +68,23 @@ app.post("/hUser/register", (req, res) => {
 
 
 app.post("/login", (req, res) => {
-    //var credential = new Hparticipant(req.body);
-    hUser.findOne({ 'credential.userName' : req.body.userName, 'credential.password': req.body.password }, (err, data) => {
-        // console.log(data);
-
-        // var response = {
-        //     response: "NOT_FOUND"
-        // }
-        // if (data == null)
-        //     res.json(response);
-        // else
-            res.json(data);
+    hUser.findOne({ 'credential.userName': req.body.userName, 'credential.password': req.body.password }, (err, data) => {
+        console.log(data);
+        res.json(data);
 
     })
 });
 
 
 var hEventSchema = new mongoose.Schema({
-    eventid: String,
+    eventId: String,
     title: String,
     fromDate: String,
     toDate: String,
     prize: String,
     assignedHost: String,
     assignedEvaluator: String,
+    status: String,
     eventConfig: {
         teamMemberMax: String,
         ideaSubmissionMax: String,
@@ -103,6 +97,7 @@ var hEvent = mongoose.model("hEvent", hEventSchema);
 
 app.post("/hEvent/insert", (req, res) => {
     var myData = new hEvent(req.body);
+    console.log(req.body)
     var message = {
         status: "success",
         detail: null
@@ -122,8 +117,26 @@ app.post("/hEvent/insert", (req, res) => {
 });
 
 
+app.post("/hEvent/updateStatus", (req, res) => {
+    var myData = new hEvent(req.body);
+    console.log(req.body)
+    var message = {
+        status: "success",
+        detail: null
+    }
+    myData.update({'eventId': req.body.eventId}, {$set:{status : req.body.status}})
+        .then(item => {
+            res.json(message);
+        })
+        .catch(err => {
+            message.status = "error";
+            message.detail = err;
+            res.json(message);
+        });
+});
+
 app.get("/hUsers/all/:role", (req, res) => {
-    hUser.find({'role' : req.params.role}, (err, data) => {
+    hUser.find({ 'role': req.params.role }, (err, data) => {
 
         var response = {
             response: "NOT_FOUND"
@@ -158,7 +171,7 @@ var evaluationSchema = new mongoose.Schema({
     codingSkills: String,
     UIDesign: String,
     Functionality: String
-    
+
 });
 
 var evaluation = mongoose.model("evaluation", evaluationSchema);

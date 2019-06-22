@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top navbar-icon-top navbar-expand-lg navbar-dark bg-dark" style="height: 70px">
-  <a class="navbar-brand" href="#">Hackathon Management</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <a class="navbar-brand" href="#"><i class="fa fa-user"></i> {{currentLoggedInUser.role}} | Hackathon Management</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,15 +8,15 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <i class="fa fa-home
-             "></i>
+        <a class="nav-link"
+          routerLink="/dashboard/{{currentLoggedInUser.credential.userName}}/{{currentLoggedInUser.role}}">
+          <i class="fa fa-home"></i>
           Events
           <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/hHostList" routerLinkActive="active" >
+        <a class="nav-link" routerLink="/hHostList" routerLinkActive="active">
           <i class="fa fa-calendar">
             <span class="badge badge-info">11</span>
           </i>
@@ -38,16 +38,19 @@
   </div>
 </nav>
 
-<div class="d-flex justify-content-center" style="margin-top: 100px; min-width: 100%;">
+<div class="d-flex justify-content-center" style="margin-top: 90px; min-width: 100%;">
   <div class="col-md-6 card">
     <div style="padding-bottom: 20px">
       <h2 style="background-color: black; color: white; padding: 5px">All Events</h2><br><br>
-      <app-event-list></app-event-list>
+      <app-event-list [currentLoggedInUser]="currentLoggedInUser"></app-event-list>
       <br>
       <hr>
-      <button type="button" style="margin-right: 15px; margin-bottom: 15px" class="d-flex justify-content-end btn {{buttonStyle}}"
-      (click)="createHackathonEvent()">{{ buttonLabel }}</button>
-      <app-event-create-form *ngIf="addingEvents"></app-event-create-form>
+      <div *ngIf="currentLoggedInUser.role == 'HA'">
+        <button type="button" style="margin-right: 15px; margin-bottom: 15px"
+          class="d-flex justify-content-end btn {{buttonStyle}}"
+          (click)="createHackathonEvent()">{{ buttonLabel }}</button>
+        <app-event-create-form [currentLoggedInUser]="currentLoggedInUser" *ngIf="addingEvents"></app-event-create-form>
+      </div>
     </div>
   </div>
 </div>

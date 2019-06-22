@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Credential } from '../model/Credential';
 import { RegistrationService } from '../service/RegistrationService';
 import { Router } from '@angular/router';
+import { HUser } from '../model/HUser';
 
 @Component({
   selector: 'app-login',
@@ -20,12 +21,11 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(data) {
-    console.log(this.credential);
     this.registrationService.authentiacateUser(this.credential)
       .subscribe(res => {
         console.log(res);
         if (res != null)
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard/' + res.credential.userName + '/' + res.role ]);
         else
           this.loginError = true;
       });

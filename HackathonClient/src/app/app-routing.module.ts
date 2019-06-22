@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'signUp', component: TeamSignUpComponent },
   { path: 'login', component: LoginComponent },
   { path: 'evaluation/:username', component: EvaluationFormComponent },
-  { path: 'dashboard', component: LandingPageComponent },
+  { path: 'dashboard/:username/:role', component: LandingPageComponent },
   { path: 'homePage', component: HomepageComponent },
   { path: 'hHostList', component: HackathonHostsComponent },
   

@@ -8,6 +8,10 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class HomepageComponent implements OnInit {
 
+  url = 'http://mywiprotesthackathonmgmt.com';
+  text =  'Web Development test Angular';
+  imageUrl = 'http://jasonwatmore.com/_content/images/jason.jpg';
+
   constructor() { }
 
   ngOnInit() {

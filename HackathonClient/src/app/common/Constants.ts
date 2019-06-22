@@ -4,6 +4,7 @@ export class Constants {
     static REGISTRATION_API = Constants.SERVER_ADDRESS + '/hUser/register';
     static AUTH_API = Constants.SERVER_ADDRESS + '/login';
     static HEVENT_INSERT_API: string = Constants.SERVER_ADDRESS + '/hEvent/insert';
+    static HEVENT_UPDATE_STATUS_API: string = Constants.SERVER_ADDRESS + '/hEvent/updateStatus';
     static HEVENT_FETCH_API: string = Constants.SERVER_ADDRESS + '/hEvent/all';
     static HUSER_FETCH_API: string = Constants.SERVER_ADDRESS + '/hUsers/all/';
     static EVALUATION_FORM_API = Constants.SERVER_ADDRESS + '/evaluation/insert';
