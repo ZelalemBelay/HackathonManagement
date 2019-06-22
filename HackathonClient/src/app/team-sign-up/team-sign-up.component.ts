@@ -3,6 +3,8 @@ import { HTeamMember } from '../model/HTeamMember';
 import { RegistrationService } from '../service/RegistrationService';
 import { HttpClient } from '@angular/common/http';
 import { HUser } from '../model/HUser';
+import { HEvent } from '../model/HEvent';
+import { EventService } from '../service/EventService';
 const URL = 'http://localhost:3001/hUser/register';  
 
 @Component({
@@ -10,13 +12,26 @@ const URL = 'http://localhost:3001/hUser/register';
   templateUrl: './team-sign-up.component.html',
   styleUrls: ['./team-sign-up.component.css']
 })
-export class TeamSignUpComponent {
+export class TeamSignUpComponent implements OnInit{
   hParticipant: HUser = new HUser();
   selectedFile: File = null;
 
-  constructor(private registrationService: RegistrationService, private http: HttpClient) {
+  assignedEvent: HEvent = new HEvent;
+  filteredEvents: HEvent[] = [];
+  listOfEvents: HEvent[] = [];
+
+  constructor(private registrationService: RegistrationService, private http: HttpClient,
+              private eventService: EventService) {
     this.hParticipant.teamMembers.push(new HTeamMember());
     //this.filesToUpload = [];
+  }
+
+  ngOnInit(): void {
+    this.eventService.fetchAllEvents().subscribe(
+      events => this.listOfEvents = events
+    )
+    console.log("listOfEvents", this.listOfEvents)
+    this.filteredEvents = this.listOfEvents;
   }
 
   submitForm(data) {
@@ -46,51 +61,31 @@ export class TeamSignUpComponent {
     this.selectedFile = <File>event.target.files[0];
   }
 
-//   upload(){
-//   this.makeFileRequest("http://localhost:3001/hUser/register", [], this.filesToUpload).then((result) => {
-//     console.log(result);
-// }, (error) => {
-//     console.error(error);
-// });
-// }
+   _listFilter = '';
+   get listFilter(): string {
+     return this._listFilter;
+   }
+   set listFilter(value: string) {
+     console.log("value", value);
+     this._listFilter = value;
+     
+     this.filteredEvents = this.listFilter ? this.performFilter(this.listFilter) : this.listOfEvents;
+     console.log("list..", this.filteredEvents);
+   }
 
-//   makeFileRequest(url: string, params: Array<string>, files: Array<File>) {
-//     return new Promise((resolve, reject) => {
-//         var formData: any = new FormData();
-//         var xhr = new XMLHttpRequest();
-//         for(var i = 0; i < files.length; i++) {
-//             formData.append("uploads[]", files[i], files[i].name);
-//         }
-//         xhr.onreadystatechange = function () {
-//             if (xhr.readyState == 4) {
-//                 if (xhr.status == 200) {
-//                     resolve(JSON.parse(xhr.response));
-//                 } else {
-//                     reject(xhr.response);
-//                 }
-//             }
-//         }
-//         xhr.open("POST", url, true);
-//         xhr.send(formData);
-//     });
-// }
+   performFilter(filterBy: string): HEvent[] {
+     filterBy = filterBy.toLocaleLowerCase();
+     return this.listOfEvents.filter((event: HEvent) =>
+     event.title.toLocaleLowerCase().indexOf(filterBy) !== -1);
+   }
 
-
- 
-
-    // let reader = new FileReader();
-    // if(event.target.files && event.target.files.length > 0) {
-    //   let file = event.target.files[0];
-    //   reader.readAsDataURL(file);
-    //   reader.onload = () => {
-    //     // this.form.get('avatar').setValue({
-    //     //   filename: file.name,
-    //     //   filetype: file.type,
-    //     //   value: reader.result.split(',')[1]
-    //     // })
-    //   };
-    // }
-  //}
+   onEventClicked(hEvent: HEvent) {
+     console.log("event ID", hEvent.title)
+     this.assignedEvent = hEvent;
+     console.log("assignedEvent", this.assignedEvent)
+     this.hParticipant.registeredEvent = hEvent.title;
+     console.log("hparticipant ", this.hParticipant.registeredEvent)
+   }
 
   addTeamMemberView() {
     this.hParticipant.teamMembers.push(new HTeamMember());

@@ -57,6 +57,42 @@
         <custom-edit-text [(ngModel)]="hParticipant.teamEmail" name="teamEmail" inputLabel="Team email Address">
         </custom-edit-text>
 
+
+        <h4>Enter Preferred Event</h4>
+        <div class="flex-grow-1" style="margin-top: 10px">
+          <h6>Event Title: {{assignedEvent.title}}</h6>
+        
+        </div>
+
+        <div class='col-md-4'>
+            <div class="form-group has-search">
+              <span class="fa fa-search form-control-feedback"></span>
+              <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" placeholder="Filter By Title"
+                [(ngModel)]='listFilter'>
+            </div>
+          </div>
+          
+          <div class='table-responsive'>
+            <table class='table' *ngIf='listOfEvents && listOfEvents.length'>
+              <thead>
+                <tr>
+                  <th>
+                    Available Hackathon Events
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor='let ev of filteredEvents'>
+                  <td (click)="onEventClicked(ev)">
+                    {{ ev.title}}
+                  </td>
+              </tbody>
+            </table>
+          </div>
+
+
+
+
         <h4>Idea Submission</h4>
 
         <custom-edit-text [(ngModel)]="hParticipant.idea.description" name="idea.description" inputLabel="Description">
@@ -66,6 +102,7 @@
         
 
 
+     
 
         
 

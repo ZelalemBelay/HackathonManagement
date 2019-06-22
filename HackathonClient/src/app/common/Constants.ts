@@ -7,6 +7,7 @@ export class Constants {
     static HEVENT_FETCH_API: string = Constants.SERVER_ADDRESS + '/hEvent/all';
     static HUSER_FETCH_API: string = Constants.SERVER_ADDRESS + '/hUsers/all/';
     static EVALUATION_FORM_API = Constants.SERVER_ADDRESS + '/evaluation/insert';
+   // static HUSER_FETCH_TEAM_API = Constants.SERVER_ADDRESS + '/hUsers/fetch/team/'
     static IMAGES: any = [
         "https://wi-images.condecdn.net/image/mprkxvalzk4/crop/405/landscape/f/141213_web.jpg",
         "https://wi-images.condecdn.net/image/mprkxvalzk4/crop/405/landscape/f/141213_web.jpg",

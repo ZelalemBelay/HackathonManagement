@@ -3,6 +3,7 @@ import { HUser } from './HUser';
 
 export class HEvent {
 
+    eventId: string;
     title: string;
     fromDate: string;
     toDate: string;

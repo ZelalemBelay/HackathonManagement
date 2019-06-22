@@ -36,7 +36,8 @@ var hUserSchema = new mongoose.Schema({
         description: String,
         attachement: String
     },
-    status: String
+    status: String,
+    registeredEvent: String
 });
 
 var hUser = mongoose.model("hUser", hUserSchema);
@@ -64,6 +65,21 @@ app.post("/hUser/register", (req, res) => {
             // res.status(400).send("Unable to save to database");
         });
 });
+
+
+// app.get("/hUsers/fetch/team/:teamName", (req, res) => {
+//     hUser.findOne({'teamName' : req.params.teamName}, (err, data) => {
+
+//         var response = {
+//             response: "NOT_FOUND"
+//         }
+//         if (data == null)
+//             res.json(response);
+//         else
+//             res.json(data);
+
+//     })
+// });
 
 
 app.post("/login", (req, res) => {
