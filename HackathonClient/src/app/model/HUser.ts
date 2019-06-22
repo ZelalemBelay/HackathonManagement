@@ -10,4 +10,5 @@ export class HUser{
     role: string;
     idea: Idea = new Idea();
     status: string;
+    registeredEvent: string;
 }

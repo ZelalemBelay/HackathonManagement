@@ -5,18 +5,33 @@ import { HttpClient } from '@angular/common/http';
 import { HUser } from '../model/HUser';
 import { Router } from '@angular/router';
 const URL = 'http://localhost:3001/hUser/register';
+import { HEvent } from '../model/HEvent';
+import { EventService } from '../service/EventService';
 
 @Component({
   selector: 'app-team-sign-up',
   templateUrl: './team-sign-up.component.html'
 })
-export class TeamSignUpComponent {
+export class TeamSignUpComponent implements OnInit{
   hParticipant: HUser = new HUser();
   selectedFile: File = null;
 
-  constructor(private registrationService: RegistrationService, private http: HttpClient, private router: Router) {
+  assignedEvent: HEvent = new HEvent;
+  filteredEvents: HEvent[] = [];
+  listOfEvents: HEvent[] = [];
+
+  constructor(private registrationService: RegistrationService, private http: HttpClient,
+              private eventService: EventService, private router: Router) {
     this.hParticipant.teamMembers.push(new HTeamMember());
     //this.filesToUpload = [];
+  }
+
+  ngOnInit(): void {
+    this.eventService.fetchAllEvents().subscribe(
+      events => this.listOfEvents = events
+    )
+    console.log("listOfEvents", this.listOfEvents)
+    this.filteredEvents = this.listOfEvents;
   }
 
   submitForm(data) {
@@ -89,6 +104,32 @@ export class TeamSignUpComponent {
   //   };
   // }
   //}
+
+   _listFilter = '';
+   get listFilter(): string {
+     return this._listFilter;
+   }
+   set listFilter(value: string) {
+     console.log("value", value);
+     this._listFilter = value;
+     
+     this.filteredEvents = this.listFilter ? this.performFilter(this.listFilter) : this.listOfEvents;
+     console.log("list..", this.filteredEvents);
+   }
+
+   performFilter(filterBy: string): HEvent[] {
+     filterBy = filterBy.toLocaleLowerCase();
+     return this.listOfEvents.filter((event: HEvent) =>
+     event.title.toLocaleLowerCase().indexOf(filterBy) !== -1);
+   }
+
+   onEventClicked(hEvent: HEvent) {
+     console.log("event ID", hEvent.title)
+     this.assignedEvent = hEvent;
+     console.log("assignedEvent", this.assignedEvent)
+     this.hParticipant.registeredEvent = hEvent.title;
+     console.log("hparticipant ", this.hParticipant.registeredEvent)
+   }
 
   addTeamMemberView() {
     this.hParticipant.teamMembers.push(new HTeamMember());

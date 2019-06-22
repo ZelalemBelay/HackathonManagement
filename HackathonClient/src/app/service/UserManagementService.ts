@@ -13,4 +13,8 @@ export class UserManagementService {
     fetchUsersByRole(role: string) {
         return this.httpClient.get<HUser[]>(Constants.HUSER_FETCH_API + role);
       }
+
+    //   fetchParticipantByTeamName(teamName: string){
+    //       return this.httpClient.get(Constants.HUSER_FETCH_TEAM_API + teamName)
+    //   }
 }

@@ -67,6 +67,21 @@ app.post("/hUser/register", (req, res) => {
 });
 
 
+// app.get("/hUsers/fetch/team/:teamName", (req, res) => {
+//     hUser.findOne({'teamName' : req.params.teamName}, (err, data) => {
+
+//         var response = {
+//             response: "NOT_FOUND"
+//         }
+//         if (data == null)
+//             res.json(response);
+//         else
+//             res.json(data);
+
+//     })
+// });
+
+
 app.post("/login", (req, res) => {
     hUser.findOne({ 'credential.userName': req.body.userName, 'credential.password': req.body.password }, (err, data) => {
         console.log(data);

@@ -60,7 +60,7 @@ export class EventCreateFormComponent implements OnInit {
 
   submitForm(data) {
     console.log(this.hEvent);
-    this.hEvent.eventId = Math.random().toString(36).substring(2, 9);
+    this.hEvent.eventId =  Math.random().toString(36).substr(2, 9);
     this.hEventService.createEvent(this.hEvent)
       .subscribe(res => console.log(res));
   }

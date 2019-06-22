@@ -3,6 +3,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { EvaluationForm } from '../model/EvaluationForm';
 import { HTeamMember } from '../model/HTeamMember';
 import { RegistrationService } from '../service/RegistrationService';
+import { UserManagementService } from '../service/UserManagementService';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';  
 import { HUser } from '../model/HUser';
@@ -21,13 +22,24 @@ export class EvaluationFormComponent {
     //filesToUpload: Array<File>;
     selectedFile: File = null;
     huser: HUser;
+    retrievedUser: HUser;
+    listOfUsers: HUser[] = [];
     events: EventListComponent;
 
   
-    constructor(private registrationService: RegistrationService, private http: HttpClient, private _router: Router, 
+    constructor(private registrationService: RegistrationService, private userManagementService: UserManagementService, private http: HttpClient, private _router: Router, 
       private route: ActivatedRoute) {
         this.route.params.subscribe( params => console.log(params));
        }
+
+      //  ngOnInit(): void {
+      //   this.userManagementService.fetchParticipantByTeamName(this.huser.teamName).subscribe(
+      //     users => {
+      //       //this.retrievedUser = users;
+      //     })
+      //     console.log("retrieved user ", this.retrievedUser)
+      // } 
+
   
     submitForm(data) {
       console.log(this.evaluationForm);
