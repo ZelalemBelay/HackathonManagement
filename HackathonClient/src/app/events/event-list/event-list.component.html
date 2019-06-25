@@ -30,7 +30,7 @@
     </div>
     <hr>
     <div [ngbCollapse]="!isCollapsed[i]">
-      <div *ngIf = "currentLoggedInUser.role == 'HP'">
+      <div *ngIf = "currentLoggedInUser.role == 'HE'">
         <h6>List of Teams</h6>
         <div *ngFor="let user of listOfUsers; let i=index" style="background: rgb(214, 214, 214); margin-top: 10px">
           <div class="d-flex">

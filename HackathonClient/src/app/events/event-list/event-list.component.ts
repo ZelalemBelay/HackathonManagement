@@ -74,7 +74,7 @@ export class EventListComponent implements OnInit {
       error => { });
 
   
-    this.userManagementService.fetchUsersByRole("hp").subscribe(
+    this.userManagementService.fetchUsersByRole("HP").subscribe(
       users => {
         console.log("user", users);
         this.listOfUsers = users;
